@@ -1,4 +1,4 @@
-package com.linhmd.service;
+package com.linhmd.service.core;
 
 import com.linhmd.dto.Department;
 

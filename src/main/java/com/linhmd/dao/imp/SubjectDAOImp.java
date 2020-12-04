@@ -1,5 +1,6 @@
-package com.linhmd.dao;
+package com.linhmd.dao.imp;
 
+import com.linhmd.dao.core.SubjectDAO;
 import com.linhmd.dto.Subject;
 import com.linhmd.utility.DBHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-public class SubjectDAOImp implements SubjectDAO{
+public class SubjectDAOImp implements SubjectDAO {
 	@Autowired
 	DBHelper dbHelper;
 

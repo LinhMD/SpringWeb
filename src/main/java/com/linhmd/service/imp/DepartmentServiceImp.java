@@ -1,17 +1,21 @@
-package com.linhmd.service;
+package com.linhmd.service.imp;
 
-import com.linhmd.dao.DepartmentDAO;
+import com.linhmd.dao.core.DepartmentDAO;
 import com.linhmd.dto.Department;
+import com.linhmd.service.core.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
+@Qualifier("DepSer1")
 public class DepartmentServiceImp implements DepartmentService {
 
 	@Autowired
 	@Qualifier("DepSqlDAO")
-	DepartmentDAO dao;
+	private DepartmentDAO dao;
 
 	@Override
 	public Set<Department> getAllDepartment() throws Exception {

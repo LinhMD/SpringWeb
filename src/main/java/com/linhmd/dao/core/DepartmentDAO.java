@@ -1,4 +1,4 @@
-package com.linhmd.dao;
+package com.linhmd.dao.core;
 
 import com.linhmd.dto.Department;
 

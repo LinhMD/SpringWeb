@@ -1,7 +1,9 @@
-package com.linhmd.dao;
+package com.linhmd.dao.imp;
 
+import com.linhmd.dao.core.DepartmentDAO;
 import com.linhmd.dto.Department;
 import com.linhmd.utility.DBHelper;
+import com.linhmd.utility.DBHelperImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 public class DepartmentDAOImp implements DepartmentDAO {
 	@Autowired
 	@Qualifier("sqlDB")
-	DBHelper dbHelper;
+	private DBHelper dbHelper;
 
 
 	public Set<Department> getAllDepartment() throws Exception {
@@ -43,7 +45,7 @@ public class DepartmentDAOImp implements DepartmentDAO {
 	@Override
 	public boolean updateDepartment(Department department) throws Exception {
 		String sql = "update department " +
-					 "set name = ?" +
+					 "set name = ? " +
 					 "where id = ?";
 		Vector<Object> vector = new Vector<>();
 		vector.add(department.getName());
@@ -68,7 +70,7 @@ public class DepartmentDAOImp implements DepartmentDAO {
 
 	public static void main(String[] args) {
 		try {
-			System.out.println(new DepartmentDAOImp().insertDepartment(new Department(6, "tổ trật tự")));
+			System.out.println(new DepartmentDAOImp().updateDepartment(new Department(4, "tổ công nghiệp")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
