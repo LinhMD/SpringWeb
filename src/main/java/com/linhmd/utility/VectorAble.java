@@ -3,7 +3,7 @@ package com.linhmd.utility;
 import java.util.Objects;
 import java.util.Vector;
 
-public interface VectorAble {
+public interface VectorAble<T> {
 	Vector<Object> toVector();
-	Object toObject(Vector<Object> data);
+	T toObject(Vector<Object> data);
 }

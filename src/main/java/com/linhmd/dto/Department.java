@@ -1,8 +1,11 @@
 package com.linhmd.dto;
 
-import java.util.Vector;
+import com.linhmd.utility.VectorAble;
 
-public class Department implements Comparable<Department>{
+import java.util.Vector;
+import java.util.stream.Collectors;
+
+public class Department implements Comparable<Department>, VectorAble<Department> {
 	private int id;
 	private String name;
 
@@ -51,5 +54,18 @@ public class Department implements Comparable<Department>{
 	@Override
 	public int compareTo(Department o) {
 		return this.id - o.id;
+	}
+
+	@Override
+	public Vector<Object> toVector() {
+		return null;
+	}
+
+	@Override
+	public Department toObject(Vector<Object> data) {
+		Vector<String> vector = data.stream()
+									.map(o -> (String) o)
+									.collect(Collectors.toCollection(Vector::new));
+		return new Department(vector);
 	}
 }

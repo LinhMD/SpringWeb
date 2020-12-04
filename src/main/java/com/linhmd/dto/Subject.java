@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-public class Subject implements Comparable<Subject>, VectorAble{
+public class Subject implements Comparable<Subject>, VectorAble<Subject>{
 	private int code;
 	private int department;
 	private String nameVN;
@@ -145,7 +145,7 @@ public class Subject implements Comparable<Subject>, VectorAble{
 	}
 
 	@Override
-	public VectorAble toObject(Vector<Object> data) {
+	public Subject toObject(Vector<Object> data) {
 		if(data.size() == 0 || data.size() < 8) return null;
 		Vector<String> vector = data.stream().map(s -> (String)s).collect(Collectors.toCollection(Vector::new));
 		return new Subject(vector);
