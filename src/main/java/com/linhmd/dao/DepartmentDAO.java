@@ -11,7 +11,7 @@ public interface DepartmentDAO {
 	/* find department by it id if not found return null */
 	Department findDepartmentByID(int id) throws Exception;
 	/* update a department by id take a new department to update */
-	boolean updateDepartment(int id, Department department) throws Exception;
+	boolean updateDepartment(Department department) throws Exception;
 	/*delete department by it id*/
 	boolean deleteDepartment(int id) throws Exception;
 	/*insert a new department*/

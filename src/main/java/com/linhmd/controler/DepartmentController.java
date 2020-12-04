@@ -2,11 +2,9 @@ package com.linhmd.controler;
 
 import com.linhmd.dao.DepartmentDAO;
 import com.linhmd.dto.Department;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -17,7 +15,7 @@ public class DepartmentController {
 	@Autowired
 	DepartmentDAO departmentDAO;
 
-	@RequestMapping("/all")
+	@GetMapping
 	public Set<Department> getAllDepartment(){
 		try {
 			return departmentDAO.getAllDepartment();
@@ -27,4 +25,45 @@ public class DepartmentController {
 		return null;
 	}
 
+	@GetMapping("/{id:\\d+}")
+	public Department findDepartment(@PathVariable("id") int id){
+		try {
+			return departmentDAO.findDepartmentByID(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@PutMapping
+	public boolean updateDepartment(@RequestBody Department department){
+		try {
+			return departmentDAO.updateDepartment(department.getId(), department);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@DeleteMapping("/{id:\\d+}")
+	public boolean deleteDepartment(@PathVariable("id") int id){
+		try {
+			return departmentDAO.deleteDepartment(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@PostMapping
+	public boolean insertDepartment(@RequestBody Department department){
+		try{
+			System.out.println(department);
+			return departmentDAO.insertDepartment(department);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

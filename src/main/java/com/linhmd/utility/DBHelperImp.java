@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.Vector;
 
 @Component
-@Qualifier("sqlConnection")
+@Qualifier("sqlDB")
 public class DBHelperImp implements DBHelper {
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {

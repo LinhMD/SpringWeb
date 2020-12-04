@@ -12,9 +12,10 @@ import java.util.Vector;
 import java.util.stream.Collectors;
 
 @Repository
+@Qualifier("DepSqlDAO")
 public class DepartmentDAOImp implements DepartmentDAO {
 	@Autowired
-	@Qualifier("sqlConnection")
+	@Qualifier("sqlDB")
 	DBHelper dbHelper;
 
 
@@ -40,13 +41,13 @@ public class DepartmentDAOImp implements DepartmentDAO {
 	}
 
 	@Override
-	public boolean updateDepartment(int id, Department department) throws Exception {
+	public boolean updateDepartment(Department department) throws Exception {
 		String sql = "update department " +
 					 "set name = ?" +
 					 "where id = ?";
 		Vector<Object> vector = new Vector<>();
 		vector.add(department.getName());
-		vector.add(id);
+		vector.add(department.getId());
 		return dbHelper.executeNonQuery(sql, vector);
 	}
 
@@ -60,12 +61,14 @@ public class DepartmentDAOImp implements DepartmentDAO {
 
 	@Override
 	public boolean insertDepartment(Department department) throws Exception {
-		return false;
+		String sql = "insert into department (id, name) " +
+					 "values(?, ?)";
+		return dbHelper.executeNonQuery(sql, department.toVector());
 	}
 
 	public static void main(String[] args) {
 		try {
-			System.out.println(new DepartmentDAOImp().getAllDepartment());
+			System.out.println(new DepartmentDAOImp().insertDepartment(new Department(6, "tổ trật tự")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

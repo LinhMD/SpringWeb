@@ -58,7 +58,10 @@ public class Department implements Comparable<Department>, VectorAble<Department
 
 	@Override
 	public Vector<Object> toVector() {
-		return null;
+		Vector<Object> vector = new Vector<>();
+		vector.add(this.getId());
+		vector.add(this.getName());
+		return vector;
 	}
 
 	@Override
